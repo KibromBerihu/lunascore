@@ -1,23 +1,44 @@
-name: Docker Pipeline
+name: Build, Test, and Save Docker Image for Grand-Challenge
+
 on:
   push:
-    branches:
-      - 'main'
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  DOCKER_IMAGE_TAG: lunascore-open-development-phase
 
 jobs:
-  docker:
+  docker-train-test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: checkout
+      - name: 📥 Checkout Repository
         uses: actions/checkout@v4
-      - name: Login to Docker Hub
-        uses: docker/login-action@v3        
-        with:
-          username: ${{ secrets.DOCKER_HUB_LUNASCORE }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: build docker image
-        run: docker build -t kibromberihu/lunascore:latest .
-      - name: push docker image
-        run: docker push kibromberihu/lunascore:latest
-        
-    
+
+      - name: 🔧 Convert Scripts to LF Endings
+        run: |
+          sudo apt-get update && sudo apt-get install -y dos2unix
+          find . -type f -name "*.sh" -exec dos2unix {} \;
+
+      - name: 🛠️ Make Scripts Executable
+        run: chmod +x do_build.sh do_test_run.sh do_save.sh
+
+      - name: 🐳 Set Up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: 🔐 Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: 🔨 Build Docker Image
+        run: ./do_build.sh $DOCKER_IMAGE_TAG
+
+      - name: 🧪 Run Test Script
+        run: ./do_test_run.sh $DOCKER_IMAGE_TAG
+
+      - name: 📦 Save Docker Image to Archive
+        run: ./do_save.sh $DOCKER_IMAGE_TAG
+
+      # OPTIONAL: Push image to Docker Hub
+      # - name: 🚀 Push to Docker Hub
+      #   run: docker push $DOCKER_IMAGE_TAG
