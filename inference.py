@@ -10,13 +10,13 @@ import joblib
 from processor import MalignancyProcessor
 
 
-# INPUT_PATH = Path("/input")
-# OUTPUT_PATH = Path("/output")
-# RESOURCE_PATH = Path("/opt/app/resources")
+INPUT_PATH = Path("/input")
+OUTPUT_PATH = Path("/output")
+RESOURCE_PATH = Path("/opt/app/resources")
 
-INPUT_PATH = Path("E:/lunascore/lunascore/test/input")
-OUTPUT_PATH = Path("E:/lunascore/results")
-RESOURCE_PATH = Path("E:/lunascore/lunascore/resources")
+# INPUT_PATH = Path("./test/input")
+# OUTPUT_PATH = Path("./results")
+# RESOURCE_PATH = Path("./resources")
 
 def transform(input_image, point):
     """
