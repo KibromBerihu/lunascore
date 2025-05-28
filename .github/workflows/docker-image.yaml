@@ -1,5 +1,4 @@
-name: Docker Pipeline
-
+name: Build and publish image dot docker hub
 on:
   push:
     branches:
@@ -23,5 +22,4 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: kibromberihu/lunascore:latest#-${{0}} #github.run_number }}
-          
+          tags: kibromberihu/lunascore:latest-${{0}} #github.run_number }}
