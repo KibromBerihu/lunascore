@@ -9,11 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: docker/setup-build-action@v3
+        uses: actions/checkout@v4
       - name: build image
         run: docker build .  -t kibromberihu/lunascore:latest
       - name: push image to docker hub
         run:
-         docker login -u kibromberihu -p ${{secrets.DOCKER_HUB_LUNASCORE}}
-         docekr push kibromberihu/lunascore:latest
+          docker login -u kibromberihu -p ${{ secrets.DOCKER_HUB_LUNASCORE }}
+          docker push kibromberihu/lunascore:latest
      
