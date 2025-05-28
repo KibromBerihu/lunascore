@@ -41,8 +41,9 @@ class MalignancyProcessor:
         elif self.mode == "3D":
             self.model_3d = I3D(num_classes=1, pre_trained=False, input_channels=3).cuda()
 
-        self.model_root = "/opt/app/resources/"
-        self.model_root = "E:/lunascore/lunascore/results/lunascore-2D-20250528"
+        # self.model_root = "/opt/app/resources/"
+        # self.model_root = "E:/lunascore/lunascore/results/lunascore-2D-20250528"
+        self.model_root = "./results"
 
     def define_inputs(self, image, header, coords):
         self.image = image
@@ -99,7 +100,7 @@ class MalignancyProcessor:
         ckpt = torch.load(
             os.path.join(
                 self.model_root,
-                #self.model_name,
+                self.model_name,
                 "best_metric_model.pth",
             )
         )

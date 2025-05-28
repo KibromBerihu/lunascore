@@ -10,13 +10,18 @@ import joblib
 from processor import MalignancyProcessor
 
 
-# INPUT_PATH = Path("/input")
-# OUTPUT_PATH = Path("/output")
+INPUT_PATH = Path("/input")
+OUTPUT_PATH = Path("/output")
+RESOURCE_PATH = Path("/opt/app/resources")
+
+# Dynamically determine path for local test vs Docker
+# DEFAULT_INPUT_PATH = Path("/input") if Path("/input").exists() else Path("./test/input")
+# DEFAULT_OUTPUT_PATH = Path("/output") if Path("/output").exists() else Path("./output")
 # RESOURCE_PATH = Path("/opt/app/resources")
 
-INPUT_PATH = Path("./test/input")
+INPUT_PATH = Path("./input")
 OUTPUT_PATH = Path("./output")
-RESOURCE_PATH = Path("./resources")
+RESOURCE_PATH = Path("./results")
 
 def transform(input_image, point):
     """
