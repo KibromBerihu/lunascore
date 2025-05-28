@@ -100,7 +100,7 @@ INPUT_DIR="${SCRIPT_DIR}/test/input"
 OUTPUT_DIR="${SCRIPT_DIR}/test/output"
 
 # --- Build Docker Image ---
-echo "=+= (Re)build the container"
+echo '=+= (Re)build the container'
 source "${SCRIPT_DIR}/do_build.sh" "$DOCKER_IMAGE_TAG"
 
 # --- Ensure Clean Output Directory ---
