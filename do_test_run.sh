@@ -157,5 +157,5 @@ docker run --rm \
     alpine:latest \
     /bin/sh -c 'chown -R ${HOST_UID}:${HOST_GID} /output'
 
-echo '=+= Wrote results to ${OUTPUT_DIR}'
-echo '=+= Save this image for uploading via ./do_save.sh \"${DOCKER_IMAGE_TAG}\"'
+echo "=+= Wrote results to ${OUTPUT_DIR}"
+echo "=+= Save this image for uploading via ./do_save.sh \"${DOCKER_IMAGE_TAG}\""
