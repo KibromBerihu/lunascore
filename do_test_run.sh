@@ -14,8 +14,8 @@ fi
 
 DOCKER_NOOP_VOLUME="${DOCKER_IMAGE_TAG}-volume"
 
-INPUT_DIR="${SCRIPT_DIR}/test/input"
-OUTPUT_DIR="${SCRIPT_DIR}/test/output"
+INPUT_DIR="${SCRIPT_DIR}/input"
+OUTPUT_DIR="${SCRIPT_DIR}/output"
 
 # --- Build Docker Image ---
 echo '=+= build the container'
