@@ -52,4 +52,4 @@ jobs:
 
       # OPTIONAL: Push image to Docker Hub
       - name: 🚀 Push to Docker Hub
-        run: docker push $DOCKER_IMAGE_TAG
+        run: docker push kibromberihu/$DOCKER_IMAGE_TAG
