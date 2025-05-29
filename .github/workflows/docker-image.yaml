@@ -49,11 +49,12 @@ jobs:
           docker builder prune -af
       - name: 📦 Tag and Save Docker Image to Archive
         run: |
-          docker tag $DOCKER_IMAGE_TAG kibromberihu/$DOCKER_IMAGE_TAG:latest
           ./do_save.sh $DOCKER_IMAGE_TAG
 
       # OPTIONAL: Push image to Docker Hub
       # - name: Build Docker image
         # run: docker build -t kibromberihu/lunascore-open-development-phase:latest .
       - name: 🚀 Push Docker Image to Docker Hub
-        run: docker push kibromberihu/$DOCKER_IMAGE_TAG:latest
+        run: | 
+          docker tag $DOCKER_IMAGE_TAG kibromberihu/${DOCKER_IMAGE_TAG}:latest
+          docker push kibromberihu/$DOCKER_IMAGE_TAG:latest
