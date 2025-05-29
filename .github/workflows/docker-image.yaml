@@ -47,5 +47,5 @@ jobs:
         run: ./do_save.sh $DOCKER_IMAGE_TAG
 
       # OPTIONAL: Push image to Docker Hub
-      # - name: 🚀 Push to Docker Hub
-      #   run: docker push $DOCKER_IMAGE_TAG
+      - name: 🚀 Push to Docker Hub
+        run: docker push $DOCKER_IMAGE_TAG
