@@ -36,20 +36,25 @@ jobs:
       - name: 🔨 Build Docker Image
         run: ./do_build.sh $DOCKER_IMAGE_TAG
 
-
+    
       - name: Run inference test
         working-directory: ${{ github.workspace }}
         run: ./do_test_run.sh $DOCKER_IMAGE_TAG
 
       #- name: 🧪 Run Test Script
       #  run: ./do_test_run.sh $DOCKER_IMAGE_TAG
-      - name: Cleanup Docker system
-        run: docker system prune -af --volumes
+      - name: Cleanup Docker before saving image
+        run: |
+          docker system prune -af --volumes
+          docker builder prune -af
+
             
 
       - name: 📦 Save Docker Image to Archive
         run: ./do_save.sh $DOCKER_IMAGE_TAG
 
       # OPTIONAL: Push image to Docker Hub
-      - name: 🚀 Push to Docker Hub
-        run: docker push kibromberihu/$DOCKER_IMAGE_TAG
+      - name: Build Docker image
+        run: docker build -t kibromberihu/lunascore-open-development-phase:latest .
+      - name: Push Docker image
+        run: docker push kibromberihu/lunascore-open-development-phase:latest
