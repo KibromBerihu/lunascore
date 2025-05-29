@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  DOCKER_IMAGE_TAG: kibromberihu/lunascore-open-development-phase:latest
+  DOCKER_IMAGE_TAG: kibromberihu/lunascore-open-development-phase
 
 jobs:
   docker-train-test:
