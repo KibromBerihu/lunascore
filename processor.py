@@ -37,13 +37,16 @@ class MalignancyProcessor:
             logging.info("Initializing the deep learning system")
 
         if self.mode == "2D":
-            self.model_2d = ResNet18(weights=None).cuda()
+            self.model_2d = ResNet18(weights=None).to(self.device)
         elif self.mode == "3D":
-            self.model_3d = I3D(num_classes=1, pre_trained=False, input_channels=3).cuda()
+            self.model_3d = I3D(num_classes=1, pre_trained=False, input_channels=3).to(self.device)
 
         self.model_root = "/opt/app/resources/"
         # self.model_root = "E:/lunascore/lunascore/results/lunascore-2D-20250528"
         # self.model_root = "./results"
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        if not self.suppress_logs:
+                    logging.info(f"Using device: {self.device}")
 
     def define_inputs(self, image, header, coords):
         self.image = image
@@ -95,14 +98,15 @@ class MalignancyProcessor:
             nodules.append(patch)
 
         nodules = np.array(nodules)
-        nodules = torch.from_numpy(nodules).cuda()
+        nodules = torch.from_numpy(nodules).to(self.device)
 
         ckpt = torch.load(
             os.path.join(
                 self.model_root,
                 self.model_name,
                 "best_metric_model.pth",
-            )
+            ),
+            map_location=self.device,  # important!
         )
         model.load_state_dict(ckpt)
         model.eval()
