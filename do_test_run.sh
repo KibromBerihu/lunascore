@@ -22,13 +22,16 @@ echo '=+= build the container'
 source "${SCRIPT_DIR}/do_build.sh" "$DOCKER_IMAGE_TAG"
 
 # --- Ensure Clean Output Directory ---
-echo '=+= Cleaning up any earlier output'
+echo "=+= Cleaning up any earlier output"
 if [ -d "$OUTPUT_DIR" ]; then
-  rm -rf "${OUTPUT_DIR:?}/"*
+  # Ensure permissions are setup correctly
+  # This allows for the Docker user to write to this location
+  rm -rf "${OUTPUT_DIR}"/*
   chmod -f o+rwx "$OUTPUT_DIR"
 else
   mkdir -m o+rwx "$OUTPUT_DIR"
 fi
+
 
 # --- Function to Restore Output Permissions After Docker Run ---
 cleanup() {
