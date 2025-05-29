@@ -32,6 +32,9 @@ class MalignancyProcessor:
         self.model_name = model_name
         self.mode = mode
         self.suppress_logs = suppress_logs
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        if not self.suppress_logs:
+            logging.info(f"Using device: {self.device}")
 
         if not self.suppress_logs:
             logging.info("Initializing the deep learning system")
@@ -44,9 +47,6 @@ class MalignancyProcessor:
         self.model_root = "/opt/app/resources/"
         # self.model_root = "E:/lunascore/lunascore/results/lunascore-2D-20250528"
         # self.model_root = "./results"
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        if not self.suppress_logs:
-                    logging.info(f"Using device: {self.device}")
 
     def define_inputs(self, image, header, coords):
         self.image = image
