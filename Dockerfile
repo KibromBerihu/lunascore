@@ -14,7 +14,7 @@ COPY --chown=user:user requirements.txt processor.py dataloader.py experiment_co
 COPY --chown=user:user lunascore/models /opt/app/models
 COPY --chown=user:user lunascore/results /opt/app/resources
 COPY --chown=user:user lunascore/input /opt/app/input
-COPY --chown=user:user lunascore/output /opt/app/output
+#COPY --chown=user:user lunascore/output /opt/app/output
 
 
 # COPY --chown=user:user test /opt/app/test
