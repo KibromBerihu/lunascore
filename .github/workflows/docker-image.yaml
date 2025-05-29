@@ -12,9 +12,9 @@ jobs:
   docker-train-test:
     runs-on: ubuntu-latest
 
-    steps:
-      - name: 📥 Checkout Repository
-        uses: actions/checkout@v4
+    steps:     
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: 🔧 Convert Scripts to LF Endings
         run: |
@@ -36,8 +36,12 @@ jobs:
       - name: 🔨 Build Docker Image
         run: ./do_build.sh $DOCKER_IMAGE_TAG
 
-      - name: 🧪 Run Test Script
+      - name: Run inference test
+        working-directory: ${{ github.workspace }}
         run: ./do_test_run.sh $DOCKER_IMAGE_TAG
+
+      #- name: 🧪 Run Test Script
+      #  run: ./do_test_run.sh $DOCKER_IMAGE_TAG
 
       - name: 📦 Save Docker Image to Archive
         run: ./do_save.sh $DOCKER_IMAGE_TAG
