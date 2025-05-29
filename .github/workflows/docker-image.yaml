@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  DOCKER_IMAGE_TAG: lunascore-open-development-phase
+  DOCKER_IMAGE_TAG: kibromberihu/lunascore-open-development-phase:latest
 
 jobs:
   docker-train-test:
@@ -54,7 +54,7 @@ jobs:
         run: ./do_save.sh $DOCKER_IMAGE_TAG
 
       # OPTIONAL: Push image to Docker Hub
-      - name: Build Docker image
-        run: docker build -t kibromberihu/lunascore-open-development-phase:latest .
+      # - name: Build Docker image
+        # run: docker build -t kibromberihu/lunascore-open-development-phase:latest .
       - name: Push Docker image
-        run: docker push kibromberihu/lunascore-open-development-phase:latest
+        run: docker push $DOCKER_IMAGE_TAG
