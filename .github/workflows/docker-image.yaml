@@ -36,12 +36,16 @@ jobs:
       - name: 🔨 Build Docker Image
         run: ./do_build.sh $DOCKER_IMAGE_TAG
 
+
       - name: Run inference test
         working-directory: ${{ github.workspace }}
         run: ./do_test_run.sh $DOCKER_IMAGE_TAG
 
       #- name: 🧪 Run Test Script
       #  run: ./do_test_run.sh $DOCKER_IMAGE_TAG
+      - name: Cleanup Docker system
+            run: docker system prune -af --volumes
+            
 
       - name: 📦 Save Docker Image to Archive
         run: ./do_save.sh $DOCKER_IMAGE_TAG
