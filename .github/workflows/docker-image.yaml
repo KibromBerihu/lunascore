@@ -51,6 +51,13 @@ jobs:
         run: |
           ./do_save.sh $DOCKER_IMAGE_TAG
 
+      - name: 🗂 Upload Image Archive as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: lunascore-image
+          path: lunascore_*.tar.gz
+          
+      # Format the build information to remove special characters
       # OPTIONAL: Push image to Docker Hub
       # - name: Build Docker image
         # run: docker build -t kibromberihu/lunascore-open-development-phase:latest .

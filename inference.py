@@ -19,9 +19,9 @@ RESOURCE_PATH = Path("/opt/app/resources")
 # DEFAULT_OUTPUT_PATH = Path("/output") if Path("/output").exists() else Path("./output")
 # RESOURCE_PATH = Path("/opt/app/resources")
 
-INPUT_PATH = Path("./input")
-OUTPUT_PATH = Path("./output")
-RESOURCE_PATH = Path("./results")
+# INPUT_PATH = Path("./input")
+# OUTPUT_PATH = Path("./output")
+# RESOURCE_PATH = Path("./results")
 
 def transform(input_image, point):
     """

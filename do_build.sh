@@ -7,7 +7,7 @@ set -e
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 # Default image tag
-DOCKER_IMAGE_TAG="lunascore-open-development-phase"
+DOCKER_IMAGE_TAG="lunascore"
 
 # Use the first CLI argument as the image tag, if provided
 if [ "$#" -eq 1 ]; then
