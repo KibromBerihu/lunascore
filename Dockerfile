@@ -15,8 +15,6 @@ COPY --chown=user:user models /opt/app/models
 COPY --chown=user:user results /opt/app/resources
 #COPY --chown=user:user input /opt/app/input
 #COPY --chown=user:user output /opt/app/output
-
-
 # COPY --chown=user:user test /opt/app/test
 
 # You can add any Python dependencies to requirements.txt

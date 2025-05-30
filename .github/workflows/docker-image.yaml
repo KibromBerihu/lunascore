@@ -54,9 +54,9 @@ jobs:
       - name: 🗂 Upload Image Archive as Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: lunascore-image
+          name: lunascore
           path: lunascore_*.tar.gz
-          
+
       # Format the build information to remove special characters
       # OPTIONAL: Push image to Docker Hub
       # - name: Build Docker image
